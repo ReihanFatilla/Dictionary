@@ -35,7 +35,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             viewModel.definitionString.observe(this@MainActivity){
-                tvDefinition.text = it
+                if(it != null){
+                    tvDefinition.text = it
+                }
             }
         }
     }
@@ -44,14 +46,15 @@ class MainActivity : AppCompatActivity() {
         binding.svDictionary.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(query: String?): Boolean {
+                    viewModel.clearPreviousDefinition()
                     if (query != null) {
                         viewModel.getWordDetail(query)
                     }
-                    return false
+                    return true
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    viewModel.clearPreviousDefinition()
+
                     return true
                 }
 

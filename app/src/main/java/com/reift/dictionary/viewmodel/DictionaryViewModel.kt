@@ -44,7 +44,7 @@ class DictionaryViewModel: ViewModel() {
     private fun getAllDefinition(definitions: List<DefinitionsItem?>?) {
         if (definitions != null) {
             for (i in definitions.indices){
-                definitionString.value = definitionString.value + "\n\n$i:${definitions[i]?.definition}"
+                definitionString.value = definitionString.value + "${i+1}: ${definitions[i]?.definition}\n\n"
             }
         }
     }
